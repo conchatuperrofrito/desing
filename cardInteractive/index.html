@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>/*global $, document, setTimeout */
+        $(document).ready(function () {
+            "use strict";
+            var x2 = 0,
+                y2 = 0,
+                h = 0,
+                v = 0,
+                elem2 = $('.card'),
+                elem2Height = elem2.outerHeight(),
+                elem2Width = elem2.outerWidth(),
+                strNumH = elem2Width.toString(),
+                strNumV = elem2Height.toString(),
+                slicedH = strNumH.slice(0, strNumH.length - 1),
+                slicedV = strNumV.slice(0, strNumV.length - 1);
+
+            function parallax2() {
+
+                elem2.on('mousemove', function (e) {
+
+                    x2 = parseInt(e.clientX - elem2.offset().left, 0);
+                    y2 = parseInt(e.clientY - elem2.offset().top, 0);
+                    h = (x2 / slicedH - 5).toFixed(5);
+                    v = (y2 / slicedV - 5).toFixed(5);
+
+                    elem2.css({
+                        'transform': 'rotateX(' + -v + 'deg' + ') rotateY(' + h + 'deg' + ')'
+                    });
+                });
+
+                // remove the animate proberty on hover 
+
+                elem2.on('mouseover', function () {
+                    elem2.removeClass('animate');
+                });
+
+
+                elem2.on('mouseout', function () {
+                    // i will animate the last transform value to default      
+
+                    var lastTransform = elem2.css('transform');
+
+                    // Animate the elem when mouse out 
+
+                    elem2.css({ 'transform': 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)' });
+                    setTimeout(function () {
+                        elem2.css({ 'transform': lastTransform });
+                    }, 300);
+                    setTimeout(function () {
+                        elem2.css({ 'transform': 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)' });
+                    }, 600);
+
+                    // set the classes 
+
+                    elem2.attr('class', 'card animate'); // set the attribute class in a very simple way
+
+                });
+            }
+            parallax2();
+        });</script>
+</head>
+<style>
+    .parent {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        perspective: 400px
+    }
+
+    .parent .ex2 {
+        perspective: 1000px
+    }
+
+    .parent .ex2 .card {
+        width: 270px;
+        height: 410px;
+        margin-top: 40px;
+        background-color: cornflowerblue;
+        color: #fff;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        /*	transition: all .3s ease-in-out;*/
+        -webkit-box-shadow: 0 10px 6px -6px #777;
+        -moz-box-shadow: 0 10px 6px -6px #777;
+        box-shadow: 0 10px 6px -6px #777;
+        transform-style: preserve-3d;
+        will-change: transform
+    }
+
+    .parent .ex2 .card.animate {
+        transition: all .3s ease-in-out;
+    }
+
+    .parent .ex2 .card img {
+        min-height: 410px;
+        width: 100%
+    }
+</style>
+
+<body>
+    <div class="parent">
+        <div class="ex2">
+            <div class="card">
+                <img src="http://editor-ferret-86302.bitballoon.com/images/golan-levin-thumbnail_listing_270_410_crop.jpg"
+                    alt="Golan Levin">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

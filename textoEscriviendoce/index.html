@@ -1,0 +1,259 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto Escribiéndose con Máquina de Escribir</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="text-container">
+        <p id="typing-text"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html> -->
+<!-- v2 -->
+<!-- <div>
+    <style>
+        .text-container {
+            text-align: left;
+            margin: 20px;
+            border: 1px solid #000;
+            padding: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-width: 50%;
+            /* Ajusta el ancho máximo para que se adapte al tamaño de la pantalla */
+
+        }
+
+        #typing-text {
+            font-size: 16px;
+            font-family: "Courier New", Courier, monospace;
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 8s steps(56) forwards;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+    <div class="text-container">
+        <p id="typing-text"></p>
+
+    </div>
+    <script>
+        const texto =
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem sequi ut placeat corporis nihil excepturi vero maiores quos commodi, id officia ex animi magnam ad tempore ipsa ipsum atque architecto.";
+        const typingText = document.getElementById("typing-text");
+
+        typingText.textContent = texto;
+    </script>
+</div> -->
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .text-container {
+            text-align: left;
+            margin: 20px;
+            border: 1px solid #000;
+            padding: 10px;
+            white-space: pre;
+            font-family: "Courier New", Courier, monospace;
+            max-width: 50%;
+            max-height: 50vh;
+            /* Ajusta el alto máximo al 50% del alto de la ventana */
+            overflow: auto;
+        }
+
+        #typing-text {
+            font-size: 16px;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 8s steps(56) forwards;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-container">
+        <p id="typing-text"></p>
+    </div>
+    <script>
+        const texto =
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem sequi ut placeat corporis nihil excepturi vero maiores quos commodi, id officia ex animi magnam ad tempore ipsa ipsum atque architecto. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem sequi ut placeat corporis nihil excepturi vero maiores quos commodi, id officia ex animi magnam ad tempore ipsa ipsum atque architecto.";
+        const typingText = document.getElementById("typing-text");
+
+        let textoActual = texto;
+        typingText.textContent = textoActual;
+
+        // Función para dividir el texto en líneas de 50 caracteres y agregar saltos de línea
+        function dividirTexto(texto, longitudLinea) {
+            const lineas = [];
+            let linea = '';
+            for (let palabra of texto.split(' ')) {
+                if (linea.length + palabra.length + 1 <= longitudLinea) {
+                    if (linea) {
+                        linea += ' ' + palabra;
+                    } else {
+                        linea = palabra;
+                    }
+                } else {
+                    lineas.push(linea);
+                    linea = palabra;
+                }
+            }
+            if (linea) {
+                lineas.push(linea);
+            }
+            return lineas.join('\n');
+        }
+
+        const lineas = dividirTexto(textoActual, 50);
+
+        let lineaActual = 0;
+
+        function animarTexto() {
+            if (lineaActual < lineas.length) {
+                typingText.textContent = lineas[lineaActual];
+                lineaActual++;
+            }
+        }
+
+        const velocidadDeEscritura = 100; // ajusta la velocidad de escritura (en milisegundos) según lo necesites
+        const intervalo = setInterval(animarTexto, velocidadDeEscritura);
+
+        // Detén la animación cuando todas las líneas se hayan mostrado
+        if (lineaActual >= lineas.length) {
+            clearInterval(intervalo);
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-container {
+            text-align: left;
+            margin: 20px;
+            border: 1px solid #000;
+            padding: 10px;
+            font-family: "Courier New", Courier, monospace;
+            max-width: 50%;
+            white-space: pre;
+        }
+
+        #typing-text {
+            font-size: 16px;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 8s steps(56) forwards;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-container">
+        <p id="typing-text"></p>
+    </div>
+    <script>
+        const texto =
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem sequi ut placeat corporis nihil excepturi vero maiores quos commodi, id officia ex animi magnam ad tempore ipsa ipsum atque architecto.";
+        const typingText = document.getElementById("typing-text");
+
+        let textoActual = texto;
+        typingText.textContent = textoActual;
+
+        // Función para dividir el texto en líneas de 20 caracteres y agregar saltos de línea
+        function dividirTexto(texto, longitudLinea) {
+            const lineas = [];
+            let linea = '';
+            for (let palabra of texto.split(',')) {
+                if (linea.length + palabra.length + 1 <= longitudLinea) {
+                    if (linea) {
+                        linea += ' ' + palabra;
+                    } else {
+                        linea = palabra;
+                    }
+                } else {
+                    lineas.push(linea);
+                    linea = palabra;
+                }
+            }
+            if (linea) {
+                lineas.push(linea);
+            }
+            return lineas.join('\n');
+        }
+
+        const lineas = dividirTexto(textoActual, 20);
+
+        let lineaActual = 0;
+
+        function animarTexto() {
+            if (lineaActual < lineas.length) {
+                typingText.textContent = lineas[lineaActual];
+                lineaActual++;
+            }
+        }
+
+        const velocidadDeEscritura = 100; // ajusta la velocidad de escritura (en milisegundos) según lo necesites
+        const intervalo = setInterval(animarTexto, velocidadDeEscritura);
+
+        // Detén la animación cuando todas las líneas se hayan mostrado
+        if (lineaActual >= lineas.length) {
+            clearInterval(intervalo);
+        }
+    </script>
+</body>
+
+</html>
